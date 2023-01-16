@@ -9,8 +9,8 @@ app_name = 'gateway'
 router = routers.DefaultRouter()
 router.register(r'posts', views.PostViewSet, basename='Post')
 router.register(r'albuns', views.AlbumViewSet, basename='Album')
-router.register(r'tarefas', views.TarefaViewSet, basename='Tarefa')
-router.register(r'alunos', views.AlunoViewSet, basename='Aluno')
+router.register(r'apis', views.APIViewSet, basename='API')
+
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -9,12 +9,9 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.response import Response
 
-class DailyViewSet(viewsets.ModelViewSet):
-    #res = requests.get('https://localhost:8000/api/')
-    #print(res.status_code)
-    #response = json.loads(res.text)   
-    #queryset = response
-    #serializer_class = SerializadorDaily
+class APIViewSet(viewsets.ModelViewSet):
+    queryset = API.objects.all()
+    serializer_class = SerializadorAPI
     pass
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -44,24 +41,3 @@ class AlbumViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         pass
-
-class CronogramaViewSet(viewsets.ModelViewSet):
-    #res = requests.get('https://localhost:8000/api/cronogramas/')
-    #print(res.status_code)
-    #response = json.loads(res.text)
-    #queryset = response
-    #serializer_class = SerializadorCronograma
-#
-    #def create(self, request, *args, **kwargs):
-    #    return super().create(request, *args, **kwargs)
-    pass
-
-class TarefaViewSet(viewsets.ModelViewSet):
-    #queryset = Tarefa.objects.all()
-    #serializer_class = SerializadorTarefa
-    pass
-
-class AlunoViewSet(viewsets.ModelViewSet):
-    #queryset = Aluno.objects.all()
-    #serializer_class = SerializadorAluno
-    pass
