@@ -7,6 +7,7 @@ app_name = 'gateway'
 
 # Wire up our API using automatic URL routing.
 router = routers.DefaultRouter()
+router.register(r'posts', views.PostViewSet, basename='Post')
 router.register(r'albuns', views.AlbumViewSet, basename='Album')
 router.register(r'tarefas', views.TarefaViewSet, basename='Tarefa')
 router.register(r'alunos', views.AlunoViewSet, basename='Aluno')
