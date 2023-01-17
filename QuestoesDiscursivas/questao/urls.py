@@ -7,8 +7,8 @@ app_name = 'questao'
 
 # Wire up our API using automatic URL routing.
 router = routers.DefaultRouter()
-router.register(r'listas', views.ListaViewSet, basename='Lista')
-router.register(r'perguntas', views.QuestaoViewSet, basename='Pergunta')
+router.register(r'lista', views.ListaViewSet, basename='Lista')
+router.register(r'pergunta', views.QuestaoViewSet, basename='Pergunta')
 
 
 urlpatterns = [

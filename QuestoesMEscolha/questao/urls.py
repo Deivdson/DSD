@@ -3,13 +3,13 @@ from .views import *
 from rest_framework import routers
 from . import views
 
-app_name = 'gateway'
+app_name = 'questao'
 
 # Wire up our API using automatic URL routing.
 router = routers.DefaultRouter()
-router.register(r'post', views.PostViewSet, basename='Post')
-router.register(r'albun', views.AlbumViewSet, basename='Album')
-router.register(r'api', views.APIViewSet, basename='API')
+router.register(r'lista', views.ListaViewSet, basename='Lista')
+router.register(r'questao', views.QuestaoViewSet, basename='Pergunta')
+router.register(r'alternativa', views.AlternativaViewSet, basename='Alternativa')
 
 
 urlpatterns = [
