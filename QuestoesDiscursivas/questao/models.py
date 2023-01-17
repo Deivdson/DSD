@@ -6,7 +6,7 @@ class Lista(models.Model):
     descricao = models.CharField(max_length=60)
 
     def __str__(self):
-        return self.titulo + " - " + self.id
+        return self.titulo 
 
 class Questao(models.Model):
     titulo = models.CharField(max_length=20)
@@ -15,5 +15,5 @@ class Questao(models.Model):
     lista = models.ForeignKey(Lista, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.titulo + " - " + self.id
+        return self.titulo 
 

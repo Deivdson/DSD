@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     const loadData = () => {
-      fetch('http://localhost:8000/banco/api', {mode:'no-cors'})
+      fetch('http://localhost:8000/banco/api/', {mode:'no-cors'})
       .then(response => response.json())
       .then(data => setApi(data))
     }
