@@ -18,5 +18,5 @@ class Album(models.Model):
     thumbnailUrl = models.CharField(max_length=50)
 
 class API(models.Model):
-    title = models.CharField(max_length=30)
-    url = models.CharField(max_length=30)
+    title = models.CharField(max_length=50)
+    url = models.CharField(max_length=150)
