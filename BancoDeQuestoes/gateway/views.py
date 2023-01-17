@@ -12,7 +12,6 @@ from rest_framework.response import Response
 class APIViewSet(viewsets.ModelViewSet):
     queryset = API.objects.all()
     serializer_class = SerializadorAPI
-    pass
 
 class PostViewSet(viewsets.ModelViewSet):
     res = requests.get('https://jsonplaceholder.typicode.com/posts')
