@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+ 
+<html lang="en">
+ 
+<head>
+ 
+    <meta charset="UTF-8">
+ 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <title>WebSocker Client</title>
+    <link rel="stylesheet" href="style.css">
+ 
+</head>
+ 
+<body style="display: flex;">
+    <section>
+        <div class="box" id="perguntas">
+
+        </div>
+        <form id="form-perguntas">
+            <label for="perg">Insira uma pergunta: </label> <br />
+            <input type="text" name="perg"><br />
+            <labe for="resp">Insira a resposta: </labe><br />
+            <input type="text" name="resp"> <br />
+
+            <input type="submit" value="Enviar" onclick="EnviarPergunta()">
+        </form>
+    </section>
+    
+    <section>
+        <div class="box" id="perguntas">
+
+        </div>
+        <form id="form-reponder">
+            <label for="perg">Insira o ID da pergunta: </label> <br />
+            <input type="text" name="id"><br />
+            <labe for="resp">Insira a resposta: </labe><br />
+            <input type="text" name="resp"> <br />
+
+            <input type="submit" value="Enviar" onclick="EnviarResposta()">
+        </form>
+    </section>
+    <!-- <button onclick="EnviarPergunta()">Click Here</button> -->
+ 
+</body>
+ 
+<script>
+
+class Pergunta{
+    constructor(perg, resp){
+        this.perg=perg;
+        this.resp=resp;
+    }
+    comp(resposta){
+        if(resposta==this.resp){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+var lista_perguntas = []
+ 
+    const socket = new WebSocket('ws://localhost:3000');
+ 
+socket.addEventListener('open', function (event) {
+ 
+    socket.send('Connection Established');
+ 
+});
+ 
+ 
+ 
+socket.addEventListener('message', function (event) {
+    const msg = String(JSON.parse(event.data)).split('-');
+    console.log(`Mensagem retornada do server: ${msg}`);
+
+    let perguntas = document.getElementById("perguntas");
+    let nova_pergunta = document.createElement('div');        
+    nova_pergunta.innerHTML = `ID: 0 Pergunta: ${msg[0]}`;
+
+    perguntas.appendChild(nova_pergunta);
+
+    if(msg[0] == "pergunta"){    
+        for(let perg in perguntas){
+            console.log(perg.perg)
+        }    
+        let perguntas = document.getElementById("perguntas");
+        let nova_pergunta = document.createElement('div');        
+        nova_pergunta.innerHTML = `ID: ${msg[1]} Pergunta: ${msg[1]}`;
+
+        perguntas.appendChild(nova_pergunta);
+
+    }else if(msg[0] == "resposta"){
+        altert(msg[1]);
+    }
+ 
+});
+ 
+const EnviarPergunta = () => {
+    console.log("Enviando pergunta...")
+    var pergunta = document.getElementById("form-perguntas").elements["perg"].value;
+    var resposta = document.getElementById("form-perguntas").elements["resp"].value;
+    // msg: tipo pergunta resposta `pergunta ${pergunta} ${resposta}`
+    var objetoJSON = {tipo: "pergunta", perg: pergunta, resp: resposta}
+    // socket.send(JSON.stringify(objetoJSON));
+    socket.send(`pergunta-${pergunta}-${resposta}`);
+    console.log("Enviada!");
+}
+const EnviarResposta = () => {
+    console.log("Enviando resposta...");
+
+    var id = document.getElementById("form-respnder").elements["id"].value;
+    var resposta = document.getElementById("form-responder").elements["resp"].value;
+
+    socket.send(`resposta ${id} ${resposta}`);
+    
+
+    console.log("Enviada!");
+}
+ 
+</script>
+ 
+</html>

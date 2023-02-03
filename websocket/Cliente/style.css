@@ -1,0 +1,8 @@
+.box{
+    background-color: rgb(52, 52, 52);
+    width: 20rem;
+    height: 10rem;
+    margin: 5rem;
+    border-radius: 10px;
+    color: aliceblue;
+}
